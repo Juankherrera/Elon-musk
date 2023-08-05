@@ -1,238 +1,1478 @@
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drogadicción en Jóvenes</title>
+    <link rel="stylesheet" href="script.js">
+    <link rel="stylesheet" href="style.css">
     
+
+   
 </head>
+
 <body>
 
-
     <style>
-        /* Estilos generales */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --padding-container: 100px 0;
+    --color-title: #001A49;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: var(--padding-container);
+}
+
+.hero {
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    max-height: 800px;
+    position: relative;
+    display: grid;
+    grid-template-rows: 100px 1fr;
+    color: #fff;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(180deg, #0000008c 0%, #0000008c 100%), url('../images/computer.jpg');
+    background-size: cover;
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 95%, 0 80%);
+    z-index: -1;
+}
+
+
+/* Nav */
+
+.nav {
+    --padding-container: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.nav__title {
+    font-weight: 300;
+}
+
+.nav__link {
+    margin-left: auto;
+    padding: 0;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    gap: 2em;
+}
+
+.nav__items {
+    list-style: none;
+}
+
+.nav__links {
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav__menu {
+    margin-left: auto;
+    cursor: pointer;
+    display: none;
+}
+
+.nav__img {
+    display: block;
+    width: 30px;
+}
+
+
+.nav__close {
+    display: var(--show, none);
+}
+
+
+/* Hero container */
+
+.hero__container {
+    max-width: 800px;
+    --padding-container: 0;
+    display: grid;
+    grid-auto-rows: max-content;
+    align-content: center;
+    gap: 1em;
+    padding-bottom: 100px;
+    text-align: center;
+}
+
+.hero__title {
+    font-size: 3rem;
+}
+
+.hero__paragraph {
+    margin-bottom: 20px;
+}
+
+
+/* About */
+
+.about {
+    text-align: center;
+}
+
+.subtitle {
+    color: var(--color-title);
+    font-size: 2rem;
+    margin-bottom: 25px;
+}
+
+
+.about__paragraph {
+    line-height: 1.7;
+}
+
+.about__main {
+    padding-top: 80px;
+    display: grid;
+    width: 90%;
+    margin: 0 auto;
+    gap: 1em;
+    overflow: hidden;
+    grid-template-columns: repeat(auto-fit, minmax(260px, auto));
+}
+
+
+.about__icons {
+    display: grid;
+    gap: 1em;
+    justify-items:center;
+    width: 260px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.about__icon {
+    width: 40px;
+}
+
+/* Knowledge */
+
+.knowledge {
+    background-color: #e5e5f7;
+    background-image: radial-gradient(#444cf7 0.5px, transparent 0.5px), radial-gradient(#444cf7 0.5px, #e5e5f7 0.5px);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    overflow: hidden;
+}
+
+.knowledge__container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    align-items: center;
+}
+
+.knowledge__picture{
+    max-width: 500px;
+}
+
+.knowledge__paragraph{
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.knowledge__img{
+    width: 100%;
+    display: block;
+}
+
+/* price */
+
+.price{
+    text-align: center;
+}
+
+.price__table{
+    padding-top: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5em;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.price__element{
+    background-color: #e5e5f7;
+    text-align: center;
+    border-radius: 10px;
+    width: 330px;
+    padding: 40px;
+    --color-plan: #696871;
+    --color-price: #1D293F;
+    --bg-cta: #fff;
+    --color-cta: #5454D4;
+    --color-items: #696871;
+}
+
+.price__element--best{
+    width: 370px;
+    padding: 60px 40px;
+    background-color: #FF7143;
+    --color-plan: rgb(255 255 255 / 75%);
+    --color-price: #fff;
+    --bg-cta: #9F3919;
+    --color-cta: #FFF;
+    --color-items: #fff;
+}
+
+
+.price__name{
+    color: var(--color-plan);
+    margin-bottom: 15px;
+    font-weight: 300;
+}
+
+.price__price{
+    font-size: 2.5rem;
+    color: var(--color-price);
+}
+
+.price__items{
+    margin-top: 35px;
+    display: grid;
+    gap: 1em;
+    font-weight: 300;
+    font-size: 1.2rem;
+    margin-bottom: 50px;
+    color: var(--color-items);
+}
+
+.price__cta{
+    display: block;
+    padding: 20px 0;
+    border-radius: 10px;
+    text-decoration: none;
+    background-color: var(--bg-cta);
+    font-weight: 600;
+    color: var(--color-cta);
+    box-shadow: 0 0 1px rgba(0, 0, 0, .5);
+}
+
+/* Testimony */
+
+.testimony{
+    background-color: #e5e5f7;
+}
+
+.testimony__container{
+    display: grid;
+    grid-template-columns: 50px 1fr 50px;
+    gap: 1em;
+    align-items: center;
+}
+
+.testimony__body{
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2em;
+    grid-column: 2/3;
+    grid-row: 1/2;
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+.testimony__body--show{
+    pointer-events: unset;
+    opacity: 1;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.testimony__img{
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: 50% 30%;
+}
+
+.testimony__texts{
+    max-width: 700px;
+}
+
+.testimony__course{
+    background-color: royalblue;
+    color: #fff;
+    display: inline-block;
+    padding: 5px;
+}
+
+.testimony__arrow{
+    width: 90%;
+    cursor: pointer;
+}
+
+/* Questions */
+
+.questions{
+    text-align: center;
+}
+
+.questions__container{
+    display: grid;
+    gap: 2em;
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
+
+.questions__padding{
+    padding: 0;
+    transition: padding .3s;
+    border: 1px solid #5454D4;
+    border-radius: 6px;
+}
+
+.questions__padding--add{
+    padding-bottom: 30px;
+}
+
+.questions__answer{
+    padding: 0 30px 0;
+    overflow: hidden;
+}
+
+.questions__title{
+    text-align: left;
+    display: flex;
+    font-size: 20px;
+    padding: 30px 0 30px;
+    cursor: pointer;
+    color: var(--color-title);
+    justify-content: space-between;
+}
+
+.questions__arrow{
+    border-radius: 50%;
+    background-color:white;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-end;
+    margin-left: 10px;
+    transition:  transform .3s;
+}
+
+.questions__arrow--rotate{
+    transform: rotate(180deg);
+}
+
+.questions__show{
+    text-align: left;
+    height: 0;
+    transition: height .3s;
+}
+
+.questions__img{
+    display: block;
+    width: 40px;
+}
+
+.questions__copy{
+    width: 60%;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+/* Footer */
+
+.footer{
+    background-color: #1D293F;
+}
+
+.footer__title{
+    font-weight: 300;
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+.footer__title, .footer__newsletter{
+    color: #fff;
+}
+
+
+.footer__container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 60px;
+}
+
+.nav--footer{
+    padding-bottom: 20px;
+    display: grid;
+    gap: 1em;
+    grid-auto-flow: row;
+    height: 100%;
+}
+
+.nav__link--footer{
+    display: flex;
     margin: 0;
+    margin-right: 20px;
+    flex-wrap: wrap;
+}
+
+.footer__inputs{
+    margin-top: 10px;
+    display: flex;
+    overflow: hidden;
+}
+
+.footer__input{
+    background-color: #fff;
+    height: 50px;
+    display: block;
+    padding-left: 10px;
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    border: none;
+    margin-right: 16px;
+}
+
+.footer__submit{
+    margin-left: auto;
+    display: inline-block;
+    height: 50px;
+    padding: 0 20px ;
+    background-color: #2091F9;
+    border: none;
+    font-size: 1rem;
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.footer__copy{
+    --padding-container: 30px 0;
+    text-align: center;
+    color: #fff;
+}
+
+.footer__copyright{
+    font-weight: 300;
+}
+
+.footer__icons{
+    margin-bottom: 10px;
+}
+
+.footer__img{
+    width: 30px;
+}
+
+/* Media queries */
+
+@media (max-width:800px){
+    .nav__menu{
+        display: block;
+    }
+
+    .nav__link--menu{
+        position: fixed;
+        background-color: #000;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        z-index: 100;
+        opacity: 0;
+        pointer-events: none;
+        transition: .7s opacity;
+    }
+
+    .nav__link--show{
+        --show: block;
+        opacity:1 ;
+        pointer-events: unset;
+    }
+
+    .nav__close{
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 30px;
+        cursor: pointer;
+    }
+
+    .hero__title{
+        font-size: 2.5rem;
+    }
+
+
+    .about__main{
+        gap: 2em;
+    }
+
+    .about__icons:last-of-type{
+        grid-column: 1/-1;
+    }
+
+
+    .knowledge__container{
+        grid-template-columns: 1fr;
+        grid-template-rows: max-content 1fr;
+        gap: 3em;
+        text-align: center;
+    }
+
+    .knowledge__picture{
+        grid-row: 1/2;
+        justify-self: center;
+    }
+
+    .testimony__container{
+        grid-template-columns: 30px 1fr 30px;
+    }
+
+    .testimony__body{
+        grid-template-columns: 1fr;
+        grid-template-rows: max-content max-content;
+        gap: 3em;
+        justify-items:center ;
+    }
+
+
+    .testimony__img{
+        width: 200px;
+        height: 200px;
+        
+    }
+
+    .questions__copy{
+        width: 100%;
+    }
+
+    .footer__container{
+        flex-wrap: wrap;
+    }
+
+    .nav--footer{
+        width: 100%;
+        justify-items: center;
+    }
+
+    .nav__link--footer{
+        width: 100%;
+        justify-content: space-evenly;
+        margin: 0;
+    }
+
+    .footer__form{
+        width: 100%;
+        justify-content: space-evenly;
+    }
+
+    .footer__input{
+        flex: 1;
+    }
+
+}
+
+@media (max-width:600px){
+    .hero__title{
+        font-size: 2rem;
+    }
+
+    .hero__paragraph{
+        font-size: 1rem;
+    }
+
+    .subtitle{
+        font-size: 1.8rem;
+    }
+
+    .price__element{
+        width: 90%;
+    }
+
+    .price__element--best{
+        width: 90%;
+        /* padding: 40px; */
+    }
+
+    .price__price{
+        font-size: 2rem;
+    }
+
+    .testimony{
+        --padding-container: 60px 0;
+    }
+
+    .testimony__container{
+        grid-template-columns: 28px 1fr 28px;
+        gap: .9em;
+    }
+
+    .testimony__arrow{
+        width: 100%;
+    }
+
+    .testimony__course{
+        margin-top: 15px;
+    }
+
+    .questions__title{
+        font-size: 1rem;
+    }
+
+    .footer__title{
+        justify-self: start;
+        margin-bottom: 15px;
+    }
+
+    .nav--footer{
+        padding-bottom: 60px;
+    }
+
+    .nav__link--footer{
+        justify-content: space-between;
+    }
+
+    .footer__inputs{
+        flex-wrap: wrap;
+    }
+
+    .footer__input{
+        flex-basis: 100%;
+        margin: 0;
+        margin-bottom: 16px;
+    }
+
+    .footer__submit{
+        margin-right: auto;
+        margin-left: 0;
+        
+
+        /* 
+        margin:0;
+        width: 100%;
+        */
+    }
+}
+
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+
+/* Document
+   ========================================================================== */
+
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+
+ *{
+    margin: 0;
+    box-sizing: border-box;
+} 
+
+html {
+    line-height: 1.15;
+    /* 1 */
+    -webkit-text-size-adjust: 100%;
+    /* 2 */
+}
+
+/* Sections
+     ========================================================================== */
+
+/**
+   * Remove the margin in all browsers.
+   */
+
+body {
+    margin: 0;
+}
+
+/**
+   * Render the `main` element consistently in IE.
+   */
+
+main {
+    display: block;
+}
+
+/**
+   * Correct the font size and margin on `h1` elements within `section` and
+   * `article` contexts in Chrome, Firefox, and Safari.
+   */
+
+h1 {
+    font-size: 2em;
+    margin: 0;
+}
+
+/* Grouping content
+     ========================================================================== */
+
+/**
+   * 1. Add the correct box sizing in Firefox.
+   * 2. Show the overflow in Edge and IE.
+   */
+
+hr {
+    box-sizing: content-box;
+    /* 1 */
+    height: 0;
+    /* 1 */
+    overflow: visible;
+    /* 2 */
+}
+
+/**
+   * 1. Correct the inheritance and scaling of font size in all browsers.
+   * 2. Correct the odd `em` font sizing in all browsers.
+   */
+
+pre {
+    font-family: monospace, monospace;
+    /* 1 */
+    font-size: 1em;
+    /* 2 */
+}
+
+/* Text-level semantics
+     ========================================================================== */
+
+/**
+   * Remove the gray background on active links in IE 10.
+   */
+
+a {
+    background-color: transparent;
+}
+
+/**
+   * 1. Remove the bottom border in Chrome 57-
+   * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+   */
+
+abbr[title] {
+    border-bottom: none;
+    /* 1 */
+    text-decoration: underline;
+    /* 2 */
+    text-decoration: underline dotted;
+    /* 2 */
+}
+
+/**
+   * Add the correct font weight in Chrome, Edge, and Safari.
+   */
+
+b,
+strong {
+    font-weight: bolder;
+}
+
+/**
+   * 1. Correct the inheritance and scaling of font size in all browsers.
+   * 2. Correct the odd `em` font sizing in all browsers.
+   */
+
+code,
+kbd,
+samp {
+    font-family: monospace, monospace;
+    /* 1 */
+    font-size: 1em;
+    /* 2 */
+}
+
+/**
+   * Add the correct font size in all browsers.
+   */
+
+small {
+    font-size: 80%;
+}
+
+/**
+   * Prevent `sub` and `sup` elements from affecting the line height in
+   * all browsers.
+   */
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+sup {
+    top: -0.5em;
+}
+
+/* Embedded content
+     ========================================================================== */
+
+/**
+   * Remove the border on images inside links in IE 10.
+   */
+
+img {
+    border-style: none;
+}
+
+/* Forms
+     ========================================================================== */
+
+/**
+   * 1. Change the font styles in all browsers.
+   * 2. Remove the margin in Firefox and Safari.
+   */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: inherit;
+    /* 1 */
+    font-size: 100%;
+    /* 1 */
+    line-height: 1.15;
+    /* 1 */
+    margin: 0;
+    /* 2 */
+}
+
+/**
+   * Show the overflow in IE.
+   * 1. Show the overflow in Edge.
+   */
+
+button,
+input {
+    /* 1 */
+    overflow: visible;
+}
+
+/**
+   * Remove the inheritance of text transform in Edge, Firefox, and IE.
+   * 1. Remove the inheritance of text transform in Firefox.
+   */
+
+button,
+select {
+    /* 1 */
+    text-transform: none;
+}
+
+/**
+   * Correct the inability to style clickable types in iOS and Safari.
+   */
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+    -webkit-appearance: button;
+}
+
+/**
+   * Remove the inner border and padding in Firefox.
+   */
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+    border-style: none;
     padding: 0;
 }
 
-header {
-    background-color: rgb(231, 204, 170);
-    color: #fff;
-    text-align: center;
-    padding: 1rem;
+/**
+   * Restore the focus styles unset by the previous rule.
+   */
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+    outline: 1px dotted ButtonText;
 }
 
-nav {
-    background-color: rgb(255, 224, 186);
-    color: #fff;
-    text-align: center;
-    padding: 0.5rem;
+/**
+   * Correct the padding in Firefox.
+   */
+
+fieldset {
+    padding: 0.35em 0.75em 0.625em;
 }
 
-nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 1rem;
+/**
+   * 1. Correct the text wrapping in Edge and IE.
+   * 2. Correct the color inheritance from `fieldset` elements in IE.
+   * 3. Remove the padding so developers are not caught out when they zero out
+   *    `fieldset` elements in all browsers.
+   */
+
+legend {
+    box-sizing: border-box;
+    /* 1 */
+    color: inherit;
+    /* 2 */
+    display: table;
+    /* 1 */
+    max-width: 100%;
+    /* 1 */
+    padding: 0;
+    /* 3 */
+    white-space: normal;
+    /* 1 */
 }
 
-main {
-    padding: 2rem;
+/**
+   * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+   */
+
+progress {
+    vertical-align: baseline;
 }
 
-footer {
-    background-color: rgb(231, 204, 170);
-    color: #fff;
-    text-align: center;
-    padding: 1rem;
+/**
+   * Remove the default vertical scrollbar in IE 10+.
+   */
+
+textarea {
+    overflow: auto;
 }
 
-/* Estilos para las secciones */
-section {
-    margin-bottom: 2rem;
+/**
+   * 1. Add the correct box sizing in IE 10.
+   * 2. Remove the padding in IE 10.
+   */
+
+[type="checkbox"],
+[type="radio"] {
+    box-sizing: border-box;
+    /* 1 */
+    padding: 0;
+    /* 2 */
 }
 
-h2 {
-    color: #555;
+/**
+   * Correct the cursor style of increment and decrement buttons in Chrome.
+   */
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+    height: auto;
 }
 
-p {
-    color: #333;
+/**
+   * 1. Correct the odd appearance in Chrome and Safari.
+   * 2. Correct the outline style in Safari.
+   */
+
+[type="search"] {
+    -webkit-appearance: textfield;
+    /* 1 */
+    outline-offset: -2px;
+    /* 2 */
 }
 
-/* Estilos para los enlaces */
-a {
-    color: #007BFF;
+/**
+   * Remove the inner padding in Chrome and Safari on macOS.
+   */
+
+[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+/**
+   * 1. Correct the inability to style clickable types in iOS and Safari.
+   * 2. Change font properties to `inherit` in Safari.
+   */
+
+::-webkit-file-upload-button {
+    -webkit-appearance: button;
+    /* 1 */
+    font: inherit;
+    /* 2 */
+}
+
+/* Interactive
+     ========================================================================== */
+
+/*
+   * Add the correct display in Edge, IE 10+, and Firefox.
+   */
+
+details {
+    display: block;
+}
+
+/*
+   * Add the correct display in all browsers.
+   */
+
+summary {
+    display: list-item;
+}
+
+/* Misc
+     ========================================================================== */
+
+/**
+   * Add the correct display in IE 10+.
+   */
+
+template {
+    display: none;
+}
+
+/**
+   * Add the correct display in IE 10.
+   */
+
+[hidden] {
+    display: none;
+}
 
     </style>
 
+    <script>
+        (function(){
+    const openButton = document.querySelector('.nav__menu');
+    const menu = document.querySelector('.nav__link');
+    const closeMenu = document.querySelector('.nav__close');
+
+    openButton.addEventListener('click', ()=>{
+        menu.classList.add('nav__link--show');
+    });
+
+    closeMenu.addEventListener('click', ()=>{
+        menu.classList.remove('nav__link--show');
+    });
+
+    
 
 
-    <header>
-        <h1>Drogas conscientes</h1>
+})();
+
+(function(){
+    const titleQuestions = [...document.querySelectorAll('.questions__title')];
+    console.log(titleQuestions)
+
+    titleQuestions.forEach(question =>{
+        question.addEventListener('click', ()=>{
+            let height = 0;
+            let answer = question.nextElementSibling;
+            let addPadding = question.parentElement.parentElement;
+
+            addPadding.classList.toggle('questions__padding--add');
+            question.children[0].classList.toggle('questions__arrow--rotate');
+
+            if(answer.clientHeight === 0){
+                height = answer.scrollHeight;
+            }
+
+            answer.style.height = `${height}px`;
+        });
+    });
+})();
+
+(function(){
+    
+    const sliders = [...document.querySelectorAll('.testimony__body')];
+    const buttonNext = document.querySelector('#next');
+    const buttonBefore = document.querySelector('#before');
+    let value;   
+
+    buttonNext.addEventListener('click', ()=>{
+        changePosition(1);
+    });
+
+    buttonBefore.addEventListener('click', ()=>{
+        changePosition(-1);
+    });
+
+    const changePosition = (add)=>{
+        const currentTestimony = document.querySelector('.testimony__body--show').dataset.id;
+        value = Number(currentTestimony);
+        value+= add;
+
+
+        sliders[Number(currentTestimony)-1].classList.remove('testimony__body--show');
+        if(value === sliders.length+1 || value === 0){
+            value = value === 0 ? sliders.length  : 1;
+        }
+
+        sliders[value-1].classList.add('testimony__body--show');
+
+    }
+
+})();
+
+    </script>
+
+
+
+
+
+
+    <header class="hero">
+        <nav class="nav container">
+            <div class="nav__logo">
+                <h2 class="nav__title">Drogadicción en Jóvenes</h2>
+            </div>
+
+            <ul class="nav__link nav__link--menu">
+                <li class="nav__items">
+                    <a href="#" class="nav__links">Inicio</a>
+                </li>
+                <li class="nav__items">
+                    <a href="#" class="nav__links">Acerca de</a>
+                </li>
+                <li class="nav__items">
+                    <a href="#" class="nav__links">Contacto</a>
+                </li>
+                <li class="nav__items">
+                    <a href="#" class="nav__links">Galeria</a>
+                </li>
+
+                <img src="./images/close.svg" class="nav__close">
+            </ul>
+
+            <div class="nav__menu">
+                <img src="./images/menu.svg" class="nav__img">
+            </div>
+        </nav>
+
+        <section class="hero__container container">
+            <h1 class="hero__title">Drogas consientes</h1>
+            <p class="hero__paragraph">La drogadicción en jóvenes es un problema serio que afecta la salud y el futuro. La prevención y educación son esenciales para tomar decisiones saludables.</p>
+            
+             <a href="#" class="cta">Comienza ahora</a>
+        </section>
     </header>
 
-    <nav>
-        <!-- Agrega aquí enlaces a las diferentes subpáginas -->
-        <a href="#introduccion">Especificacion de las consecuencias</a>
-        <a href="#contexto">Especificacion de prevenciones</a>
-        <a href="#tipos">Videos pedagogicos</a>
-    </nav>
-
     <main>
-        <section id="introduccion">
-            <h2>Introducción</h2>
-            <p>
-                La concientización sobre el consumo de drogas en jóvenes es crucial en la sociedad actual. Se trata de educar e informar a los jóvenes sobre los riesgos y consecuencias asociados con el uso de sustancias adictivas. El objetivo es promover decisiones informadas, estilos de vida saludables y estrategias de prevención para proteger la salud y el bienestar de los jóvenes. La concientización se centra tanto en drogas ilícitas como en el abuso de medicamentos recetados, alcohol y tabaco. Es un esfuerzo colectivo que involucra a padres, educadores y la comunidad en general para asegurar un futuro más saludable para los jóvenes. 
+        <section class="container about">
+            <h2 class="subtitle">¿Qué encontrarás en este espacio?</h2>
+            <p class="about__paragraph">Todo lo necesario, como información, causas, consecuencias y además consejos de prevención sobre este tema</p>
 
-            </p>
+            <div class="about__main">
+                <article class="about__icons">
+                    <img src="img/descarga (1).jfif" alt="">
+                    
+                    <h3 class="about__title">Causas</h3>
+                    <p class="about__paragrah">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae tempore
+                        porro eius facilis?</p>
+                </article>
+
+                <article class="about__icons">
+                    <img src="img/descarga (2).jfif" alt="widht 50px">
+                    <h3 class="about__title">consecuencias</h3>
+                    <p class="about__paragrah">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae tempore
+                        porro eius facilis?</p>
+                </article>
+
+                <article class="about__icons">
+                    <img src="img/descarga (3).jfif" alt="widht 50px">
+                    <h3 class="about__title">prevenciones</h3>
+                    <p class="about__paragrah">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae tempore
+                        porro eius facilis?</p>
+                </article>
+
+                <article class="about__icons">
+                    <img src="img/descarga.jfif" alt="widht 50px">
+                    <h3 class="about__title">efectos</h3>
+                    <p class="about__paragrah">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae tempore
+                        porro eius facilis?</p>
+                </article>
+            </div>
         </section>
 
-        <section id="contexto">
-            <h2>Contexto del Tema</h2>
-            <p>
-                la drogadicción en jóvenes no es simplemente el resultado de un único factor, sino que surge de una interacción compleja de aspectos sociales, culturales, económicos y personales. Para abordar este problema, es esencial considerar estos factores y diseñar estrategias de prevención y apoyo que sean contextualizadas y adaptadas a las necesidades específicas de cada comunidad y grupo de jóvenes. 
-            </p>
+        <section class="knowledge">
+            <div class="knowledge__container container">
+                <div class="knowledege__texts">
+                    <h2 class="subtitle">Curso completo de CSS3. ¡Domina CSS de una vez por todas!</h2>
+                    <p class="knowledge__paragraph">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi,
+                        aliquam nemo in facere suscipit at delectus unde labore ad officia iste accusantium eaque
+                        aperiam laborum est voluptate totam? Modi, obcaecati?</p>
+                    <a href="#" class="cta">Entra al curso</a>
+                </div>
+
+                <figure class="knowledge__picture">
+                    <img src="./images/macbook.png" class="knowledge__img">
+                </figure>
+            </div>
         </section>
 
-        <section id="tipos">
-            <h2>Tipos de Drogadicción y Prevenciones</h2>
-            <p>
-                Drogas ilegales:
+        <section class="price container">
+            <h2 class="subtitle">Elíge la información mas conveniente para ti</h2>
 
-<p>Marihuana: El consumo excesivo y continuo puede llevar a problemas cognitivos y psicosociales.
-Cocaína: Puede causar dependencia rápida y problemas cardiovasculares graves.
-Heroína: Altamente adictiva y puede causar efectos devastadores en la salud física y mental.
-</p>
-<p>Alcohol:</p>
-<p>El abuso puede conducir a la adicción, problemas hepáticos y daños sociales.
-Tabaco: La nicotina puede generar una fuerte dependencia y causar enfermedades pulmonares y cardiovasculares. </p>
+            <div class="price__table">
+                <div class="price__element">
+                    <p class="price__name">Drogadicción</p>
+                    <h3 class="price__price">Causas</h3>
 
-<p>Drogas de prescripción médica:</p>
+                    <div class="price__items">
+                        <p class="price__features">¿Por qué?</p>
+                        <p class="price__features">¿A que se debe?</p>
+                        <p class="price__features">¿Qué conlleva?</p>
+                    </div>
 
-<p>Analgésicos opioides:</p>
+                    <a href="#" class="price__cta">Informate ahora</a>
+                </div>
 
-<p> Pueden llevar a la adicción y a la sobredosis.</p>
 
-<p>Benzodiacepinas:</p>
-<p>El uso indebido puede generar dependencia y problemas de memoria.</p>
+                <div class="price__element price__element--best">
+                    <p class="price__name">Drogadicción</p>
+                    <h3 class="price__price">Consecuencias</h3>
 
-<p></p>Drogas de diseño y sintéticas:</p>
+                    <div class="price__items">
+                        <p class="price__features">Afectaciones</p>
+                        <p class="price__features">Implicaciones</p>
+                        <p class="price__features">Problemas</p>
+                    </div>
 
-<p></p>Metanfetaminas:</p>
-<p>Altamente adictivas y perjudiciales para la salud mental y física.</p>
+                    <a href="#" class="price__cta">Informate ahora</a>
+                </div>
 
-<p></p>Éxtasis:</p>
-<p>Puede causar efectos secundarios graves y dañinos.</p>
 
-La prevención de la drogadicción es esencial para evitar sus efectos negativos. Aquí hay algunas medidas preventivas:
+                <div class="price__element">
+                    <p class="price__name">Drogadicción</p>
+                    <h3 class="price__price">Prevenciones</h3>
 
-Educación: Proporcionar información precisa sobre los efectos y riesgos de las drogas desde edades tempranas puede ayudar a crear conciencia y tomar decisiones informadas.
+                    <div class="price__items">
+                        <p class="price__features">Estrategias</p>
+                        <p class="price__features">Enfoques</p>
+                        <p class="price__features">Papeles</p>
+                    </div>
 
-Comunicación: Fomentar el diálogo abierto y sincero sobre las drogas entre padres, cuidadores y niños puede ayudar a establecer una base sólida para la toma de decisiones saludables.
+                    <a href="#" class="price__cta">Informate ahora</a>
+                </div>
 
-Participación comunitaria: Involucrar a la comunidad en programas educativos y actividades que promuevan un estilo de vida libre de drogas puede generar un ambiente de apoyo.
+                <div class="price__element">
+                    <p class="price__name">Drogadicción</p>
+                    <h3 class="price__price">Efectos</h3>
 
-Desarrollo de habilidades: Enseñar habilidades de afrontamiento, manejo del estrés y toma de decisiones puede ayudar a las personas a resistir la presión de consumir drogas.
+                    <div class="price__items">
+                        <p class="price__features">Impactos</p>
+                        <p class="price__features">Influecia</p>
+                        <p class="price__features">Repercusiones</p>
+                    </div>
 
-Acceso limitado: Regular el acceso a sustancias psicoactivas, como el alcohol y el tabaco, puede reducir la disponibilidad y, por lo tanto, el riesgo de abuso.
+                    <a href="#" class="price__cta">Informate ahora</a>
+                </div>
 
-Apoyo emocional: Proporcionar apoyo emocional y acceso a recursos de salud mental puede ayudar a las personas a lidiar con problemas subyacentes que podrían llevar al abuso de drogas.
 
-Alternativas saludables: Fomentar actividades recreativas, deportivas y artísticas como alternativas saludables al consumo de drogas.
-
-Programas de tratamiento: Ofrecer programas de tratamiento y rehabilitación para aquellos que luchan contra la adicción puede ayudar a recuperarse y evitar recaídas.
-
-Políticas públicas: Implementar políticas de control de drogas efectivas y basadas en la evidencia puede ayudar a reducir la disponibilidad y el consumo de sustancias adictivas.
-
-Recuerda que la prevención es fundamental, pero también es importante brindar apoyo y tratamiento a quienes ya están lidiando con la drogadicción.
-            </p>
+            </div>
         </section>
 
-        <section id="consecuencias">
-            <h2>Consecuencias de la Drogadicción en Jóvenes</h2>
-            <p>
-                Problemas de salud física:
+        <section class="testimony">
+            <div class="testimony__container container">
+                <img src="img/izquierda.png" class="testimony__arrow" id="before">
 
-Daños al sistema cardiovascular, incluyendo ritmo cardíaco irregular y presión arterial alta.
-Problemas respiratorios, como tos crónica, dificultad para respirar y enfermedades pulmonares.
-Daño al hígado y al sistema digestivo.
-Mayor riesgo de accidentes automovilísticos y lesiones debido a la alteración de los sentidos y la coordinación motora.
-Problemas de salud mental:
+                <section class="testimony__body testimony__body--show" data-id="1">
+                    <div class="testimony__texts">
+                        <h2 class="subtitle">Juan Pedraza <span class="testimony__course">estudiante de grado octavo.</span></h2>
+                        <p class="testimony__review">A los 13 años, Juan comenzó a consumir marihuana en su grupo de amigos. Con el tiempo, su consumo se volvió más frecuente y comenzó a experimentar con otras drogas. Su rendimiento escolar cayó y comenzó a distanciarse de su familia. Eventualmente, se encontró luchando contra la adicción a las metanfetaminas y buscó ayuda en un centro de rehabilitación.</p>
+                    </div>
 
-Mayor riesgo de desarrollar trastornos de ansiedad, depresión y otros problemas psicológicos.
-Agravamiento de problemas de salud mental preexistentes.
-Mayor propensión a comportamientos impulsivos y riesgosos.
-Desarrollo cognitivo y educativo:
+                    <figure class="testimony__picture">
+                        <img src="img/image_content_24162561_20150829161507.jpg" class="testimony__img">
+                    </figure>
+                </section>
 
-Dificultades en el aprendizaje y la concentración.
-Bajo rendimiento académico y abandono escolar.
-Reducción de la capacidad de memoria y de toma de decisiones.
-Relaciones interpersonales y sociales:
+                <section class="testimony__body" data-id="2">
+                    <div class="testimony__texts">
+                        <h2 class="subtitle">Mi nombre es Alejandra Perez, <span class="testimony__course">estudiante de
+                                CSS.</span></h2>
+                        <p class="testimony__review">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut est
+                            esse, asperiores eaque laborum veniam laboriosam saepe reiciendis dolorem. Cum, ratione
+                            voluptatum!</p>
+                    </div>
 
-Conflictos familiares y deterioro de las relaciones con padres, hermanos y otros miembros de la familia.
-Dificultades para establecer y mantener relaciones saludables.
-Aislamiento social y disminución de la participación en actividades sociales.
-Impacto en el futuro:
+                    <figure class="testimony__picture">
+                        <img src="img/" class="testimony__img">
+                    </figure>
+                </section>
 
-Menor probabilidad de éxito en la vida profesional y personal.
-Limitaciones en las oportunidades de empleo y crecimiento profesional.
-Mayor riesgo de involucrarse en actividades delictivas y problemas legales.
-Adicción y tolerancia:
+                <section class="testimony__body" data-id="3">
+                    <div class="testimony__texts">
+                        <h2 class="subtitle">Mi nombre es Karen Arteaga, <span class="testimony__course">estudiante de
+                                CSS.</span></h2>
+                        <p class="testimony__review">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut est
+                            esse, niam laboriosam saepe reiciendis dolorem. Cum, ratione voluptatum!</p>
+                    </div>
 
-La exposición continua a sustancias puede llevar a la dependencia física y psicológica.
-Desarrollo de tolerancia, lo que significa que se necesita consumir cantidades cada vez mayores para lograr los mismos efectos.
-Riesgo de sobredosis:
+                    <figure class="testimony__picture">
+                        <img src="./images/face3.jpg" class="testimony__img">
+                    </figure>
+                </section>
 
-La búsqueda de una experiencia más intensa puede llevar a una dosis excesiva que resulte en sobredosis, con consecuencias graves e incluso fatales.
-Dificultades económicas:
+                <section class="testimony__body" data-id="4">
+                    <div class="testimony__texts">
+                        <h2 class="subtitle">Mi nombre es Kevin Ramirez, <span class="testimony__course">estudiante de
+                                CSS.</span></h2>
+                        <p class="testimony__review">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut est
+                            esse, niam laboriosam saepe reiciendis dolorem. Cum, ratione voluptatum!</p>
+                    </div>
 
-El costo financiero de mantener una adicción puede llevar a problemas económicos y endeudamiento
-            </p>
+                    <figure class="testimony__picture">
+                        <img src="./images/face4.jpg" class="testimony__img">
+                    </figure>
+                </section>
+
+
+                <img src="img/derecha.png" class="testimony__arrow" id="next">
+            </div>
+        </section>
+
+        <section class="questions container">
+            <h2 class="subtitle">Consejos que te pueden ayudar</h2>
+            <p class="questions__paragraph">lee con atención los siguientes consejos que podran brindarte información valida para sobrellevar este tema</p>
+
+            <section class="questions__container">
+                <article class="questions__padding">
+                    <div class="questions__answer">
+                        <h3 class="questions__title">Tip 1
+                            <span class="questions__arrow">
+                                <img src="img/pngwing.com.png" class="questions__img">
+                            </span>
+                        </h3>
+
+                        <p class="questions__show">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos
+                            facere, quidem eum id excepturi assumenda explicabo nam accusamus veritatis voluptates
+                            eveniet adipisci, dicta nihil nemo modi possimus officiis quam atque? Lorem ipsum, dolor sit
+                            amet consectetur adipisicing elit. Quos facere, quidem eum id excepturi assumenda explicabo
+                            nam accusamus veritatis voluptates eveniet adipisci, dicta nihil nemo modi possimus officiis
+                            quam atque?</p>
+                    </div>
+                </article>
+
+                <article class="questions__padding">
+                    <div class="questions__answer">
+                        <h3 class="questions__title">Tip 2
+                            <span class="questions__arrow">
+                                <img src="img/pngwing.com.png" class="questions__img">
+                            </span>
+                        </h3>
+
+                        <p class="questions__show">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos
+                            facere, quidem eum id excepturi assumenda explicabo nam accusamus veritatis voluptates
+                            eveniet adipisci, dicta nihil nemo modi possimus officiis quam atque? Lorem ipsum, dolor sit
+                            amet consectetur adipisicing elit. Quos facere, quidem eum id excepturi assumenda explicabo
+                            nam accusamus veritatis voluptates eveniet adipisci, dicta nihil nemo modi possimus officiis
+                            quam atque?</p>
+                    </div>
+                </article>
+
+                <article class="questions__padding">
+                    <div class="questions__answer">
+                        <h3 class="questions__title">Tip 3
+                            <span class="questions__arrow">
+                                <img src="img/pngwing.com.png" class="questions__img">
+                            </span>
+                        </h3>
+
+                        <p class="questions__show">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos
+                            facere, quidem eum id excepturi assumenda explicabo nam accusamus veritatis voluptates
+                            eveniet adipisci, dicta nihil nemo modi possimus officiis quam atque? Lorem ipsum, dolor sit
+                            amet consectetur adipisicing elit. Quos facere, quidem eum id excepturi assumenda explicabo
+                            nam accusamus veritatis voluptates eveniet adipisci, dicta nihil nemo modi possimus officiis
+                            quam atque?</p>
+                    </div>
+                </article>
+            </section>
+
+            <section class="questions__offer">
+                <h2 class="subtitle">¿Qué podemos concluir?</h2>
+                <p class="questions__copy"><p>El Poder de la Prevención: La información es la clave para evitar la trampa de la drogadicción. Conoce los riesgos y toma decisiones informadas para proteger tu bienestar </p> <p>Un Futuro en Tus Manos: Cada elección cuenta. Al evitar las drogas, estás creando un camino hacia un futuro más brillante y saludable para ti y quienes te rodean.</p>
+                    
+                <p>Conexiones Significativas: Mantén relaciones sólidas y significativas. La prevención de la drogadicción comienza con la comunicación abierta y el apoyo mutuo..</p>
+                
+            </section>
         </section>
     </main>
 
-    <footer>
-        <p>
-            <!-- Agrega información sobre derechos de autor y cualquier otra información relevante. -->
-        </p>
+    <footer class="footer">
+        <section class="footer__container container">
+            <nav class="nav nav--footer">
+                <h2 class="footer__title">Drogadicción en jovenes</h2>
+
+                <ul class="nav__link nav__link--footer">
+                    <li class="nav__items">
+                        <a href="#" class="nav__links">Inicio</a>
+                    </li>
+                    <li class="nav__items">
+                        <a href="#" class="nav__links">Acerca de</a>
+                    </li>
+                    <li class="nav__items">
+                        <a href="#" class="nav__links">Contacto</a>
+                    </li>
+                    <li class="nav__items">
+                        <a href="#" class="nav__links">Blog</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <form class="footer__form" action="https://formspree.io/f/mknkkrkj" method="POST">
+                <h2 class="footer__newsletter">Registrate</h2>
+                <div class="footer__inputs">
+                    <input type="email" placeholder="Email:" class="footer__input" name="_replyto">
+                    <input type="submit" value="Registrate" class="footer__submit">
+                </div>
+            </form>
+        </section>
+
+        <section class="footer__copy container">
+            <div class="footer__social">
+               
+            </div>
+
+            <h3 class="footer__copyright">Derechos reservados &copy; Juan Herrera y Juan Nuñez</h3>
+        </section>
     </footer>
 
-    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBcWFRgWFhYYGRgaHBwaHBwaHBgaGhwcGBgaGh4YGhgcIS4lHCErIRocJjgmKy8xNTU1GiQ7QDs0Py40NTEBDAwMEA8QHxISHjQrJSs0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDE0NP/AABEIALcBEwMBIgACEQEDEQH/xAAcAAAABwEBAAAAAAAAAAAAAAAAAQIDBAUGBwj/xAA+EAACAQIDBQUGBAUEAwADAAABAgADEQQhMQUSQVFhBiJxgZETMqGxwdEHQlLwFGJygqIjkuHxssLSFRck/8QAGQEAAwEBAQAAAAAAAAAAAAAAAQIDBAAF/8QAJBEAAwACAgICAwADAAAAAAAAAAECAxEhMRJBE1EEImEyQpH/2gAMAwEAAhEDEQA/AMs75ndAvx6x2nU3cr2ykdMK7AkKSBqwBzhYdhfvZDkZUmSN43F8xz4CJeoCwzty6xtn3j3R3YGcCwGvMztnE0P+WNlwt7E34eMZQ2zvnfhFPrfWE4sMHtWolrsSOsuML2jUmzqB1Ey9WsNBw1iktl1gcpnb0dCwzpUHdsY42zhqLjwNpjMEWXNGsRLEdrjTQ76hm0UXAuYnM9jcU+C22rtR8Km97QknJVOdzz8BOc47FNUdndizE3JPGFtnbtTEPvuF5BQclHIAys9uDzB5GK3srM+K/o473kZmima8Yd4BthO0YdopniadNnYKouToJwOw8Lhy7BRe3E62E02Kw1M0dxcigJW+RvxvfnHsJs4Uqdhm2RY8yOHhLJAHGYB8RJVSfJonG1tfwwdLURTi0VWp7jsvJiPQwqmsqZ9B0jYgywStY9eHrK2SqRuL2zHHp1EWkNL0WO5vXa54f9SNiHUXUDM6+XzhpUJA08h9YhHB4ZyfRR8oSKl7528NSeck7KcHfBBJOY8ePwtI+IdbEZA8bceh5RGCuCGGgNvI6ysV41sna8loty47wzzW/DUf9SLVfKJr1De/Lj+/3nG2e2nGbfIxeOhz2msj1WiWeJvA2ckJ3+EaYxUS44xGx9BAxBeFvRLGAIe9DjcEGzjs9EALu8JS4vYCkuwfM5i/CW5ygAvJJjGS/wDwtS+QGXLjI9LZ1QsVCtfjcaeBm5TKS6djwhVMGjm1egyNZwV684qvXDd1beOk3OP2IlVgxJuJU1OyB3sn7mpyz8o3kdozC1AL93MjXrJNEEbuQNxmTr5S22v2bKKroScwLW58TION2VWp6gGwvcQqkBojmrYMFvmcyfpIVRLm5zP7yvJAyFzqZHaTqtlscaWyO9JT/wByHiaYXnb5SzaneR69LIgzkO0VQexN40zwqwsbR7BYNqjWGnE8BOEG8PQeowRFLMeA+Z6TU7M2b7EXK7zHVhnboI7suglIWTXLebifsJY1BnJ5dyuSuDVN67Qx7dTkTbxyj2CFlt5RxFvqAR1zhtSU6DdP8uXwkdy1o1arezK9o8Nu1t4aOL+YyMrH0E1W28Hv0mJe5SzLcWJzsRcdDfymVYd0eJl4e0Zck6piIaORobQhCYRiY8mJINxYkaZSXh1Hjf6ysBj9KpbLeNvOLUjTX2ScfTAz4k+saoubdNY9e4K9c4jArZ1HDeH/AHE3wU1ySS4ZQ1zytIy55E6S0xGHFjYgcMrSpqrY5TVjrynZlyz41oNmiCYT55xEpsloDQniibiNkwBGmgvA8aN4jCOwRjeblBBsOjtlo4qR1Kd5Jp0rxAjNOlzkmlS6SXSwvOSlQDSccRUw3OO+wAEdJhXnHDTUwciIithFYZgER3dvFPVVR3iFHMkD5wpA2cn2xTC1nUCwDtYchc2+Eq3rC9hmfhLTt8//APS25mjBTvqQVLWsRcaaaSmwtMDxMVzrsvFJrgkLeSKdIudwKWJ0ABJ8gM4ihTZ2VVBZmICgaknICde7N7CTC0xkDUYd9v8A1Xko5ecWq0US2cW2n2dqo430ZFPFwR5X0vLClhVRRuWta2Ry8+c7NjMIlUFXXeXiDofESuwnZHCLn7FbcAxZgPJjadOVe0JeFt8M5MFO6d3KxsSMh8ZpU2RU/h0rNbdK3zIuV4MBymtxZwmHBPsKQZcvdU2yyYA+fmJksftd65KoSQMzbQKOJgyZFS0kVw4XD8myIjjgY4DGmpqdVHlkYhkIzVj4HOQ0n0zR5Ndr/geKp7yMvMGYiuhFwciDn5TbJUa1ytx0N/hMxtpAHLC9m55Z8ZTGnL0yGZqkmipsRpFwiIe7LGcbfpCvHSsYcETgEp8Sls/e6XHqY1hcSA4Y6DhfXPS/hIb5wisHihvJmnfE4c3AIG9yvceA4GRXbeAtmNPT93lHQHeHn8pOoOVbXunUfWNj/Vi5KdroW5sbekTHMQuYt5RgveXZBB70STnEkmFvxdhA0IiGCDCYQB0DfgiIIDtHoKhRv4SSEA0iV5RIfpEAPpUjm9IymLJnHDwMMmMB7Sm7XbSNHDMVNncimp4i9yT6A+ohS29HPhbKrtD2tIc06BAtkz5HPiF6dZlK+Md2u7sx5sST8ZWhwIDW7xzGU2SlK0jO9snValxpeV6NutY6HTz4QjXzHpI9atdisXIlS5GxupfBu/w79kcS+/bfRAUB5uSGI6gAeTmdETEW8Br6zzzVxrpXDoxBULY9Qt7+pnYOzW2v4iglUizX3XXhvDI26HUeInn3Ps9PHe+DWgnUd4axWFrhh9OMg4bHblT2TggGxDcLnhJWNIRg+gNgeh4E+OnpESKv6Mf2w2O9TEKFyVxm3BQp7xJ8LWHOWGD2NQVGFNR7m5e9za3zvLna2GGIpELbeXMX0vyPScxodqXoOyPSRSpIYd8Zg87yuOW9pGfPTWmx6ohUkMCCMs4mWy9q6NVCr0wrEWBBDW8iBKZ6bWJRg/JeNojwUn0Un8qWuRFHK45GVPaNQQoOuZ8pNTFENd0K3GfQyq23VDOu6bi3DxMCTVDO5caRQuLRKVBxkh8vCNNTBljNoWGgY9Lxg0Dw+0IgjjbxE44TUK8iIwz8pIYnmI2UPT1hAFhT3h5/KSHMaw6WcafsSVcKytwBBI8DeA5DuG3iB3TbgTp6xqsutpbYveyYHI6Z29Sddb68ZBqU97MgA9DfPrfWPNcaYtT7RC3okiOVE4HK0aZozJiCIN8+MUIYWA4RvHl8oIuCcHZ6HsYRi2F4YpxDtDYWLURa0rxW7acEJF5zn34jYveqJTGiLvH+pz9gPWdAIM5RiqT47GulLPfc2J91USw3z0sL+dpTHw9v0TpN8Itfw+2AK1Q1qig06ZyBFw75EC3EDU9bTeY2vRquUailRuRRWPxGXjHsFgkw1BKKGyjItldjqzHqc47it1LeyABYXawz8zxkrt1W0b8MTE6a5K99gYfcKtRooCMwqJvZ/wA5GR8PWZDanZLCF+4aiZW7rhtOjgk+s01RaztuhCo4u+SD6seg+ENtnUKfecmo9veY2Uf0oMh8T1iqqXTHcS+0jnn/AOv8Q9cLQVaqfrfuImWj63P9N78hN32d2bhNmf6NXECviKrb25kFDW/KmoFhqxzsLASv7QdoMT7L2dBwirqFUByvRuB8rnnfXk+NqHfDhjv3DBr3beBuGJ4nrKJeU72ZK3Na1wd3wbLXZ1clalxax4L7p3efXjlLehWVgaVSxOh/fxmI7E7UTGUwxbdxFPI+P/yfhL3EVyxDKP8AUTJlv71uB/mHA9Zne/ZqnWuOhFPHvhcR7Coe49zSfg1rk025MBmOYvyzzH4mbMUqmKRd0tYPlqDo3085scYaWNoFKmV9G0ZWGhHFWB4zl/bHamJQDBVbHdtap+tQcm3bWB4H/mPj4paFya8HszyVfGSqWPZdCZVh/hrFs/GbVR5zk0dPbNxZ7Hx/5jFWlSqZglD6jPofvKLetF0qpHGc/Gu0cvKemTK+zXGlnH8uv+0/S8gOltcunGWSYq3GONWVxZwG+fkdRFrEn0UnM/8AZFOU5GNneHWWNXBDVG8m+8h1kZfeFvkfA6GScOeys1NdMisw4rEbq8zH2MaZBECOYakt730zjzrGcNSs17/C/lFuvK48PsZxxdbIbfpMh1XMf2i49VuP7YT4IH3VOfxkLYmJ3Ko5H5jPTwuPOaZFKbyDgT424H0tOSDszmIpjS1+o1/5kFqYHHWXWJHeJIzJzlVtKl3YVWgVKZC3OMPf8ohK2Wfnzi2UEZfvlKbJaEQRSi2tvWCLsbxZ6SVIoIBFkW0g3ecGhBs56QKtosi0QQZwxRds9qewwzkGz1P9Nf7h3j5LfztMH2Ar7uNQXtvI6/AN9Iv8QNqe0xPs1PcpDc8XObn5D+0yr7K1N3GUfFh6o0t46hiy/wB0zsWNYNugcI/hq6opZh6yDSNzeDEvew5azGj0PRD2zjyao3LniQNPhK18LiKxIJ9mn62zP9q/Uy5wjKjbxFzIG28axZjTUtloPpOH3sotq4NMOjNvu26LsTYk21nLcSwvYXPLz0E6vV2OaiF8SxAIypqSD/cwzJnNMRhVTEOqZqjGxOZ6A9QflK416Mufa0yz2FiqmGZXT3hfeHBr6g8/+J0DZu1UxI9ojBaq++Dlflf6MJztNOsbDsrbyMysNCDY/wDPnLZMKa47M+LO5en0dTfEBrOvddSN9f1W6c+vGZP8RNqrWKbqEbpIvu2AyzB6nl0lIe01YAAqjMPzXK5A3sQNYrbXaUYikE3CGJG8xtlu55HjM8xU0jVWWalrfoz9sx6R5bXIzjDtDLXsec09GNgaGpjbNnFqDyPoYNh0OipFpUMSlK2th0MUKYMV5NdBnHvsP+Ktxikxobu69LXv5RPsk8YftAPdAHhlF+Sh/hkFTCqRcdw8tQfLURhcKPzN6Rb17yywOyWcB3DW1CjInxY2Cj4wN7GUpEGmhI3UUm3IEnztBVwlQC5puOu63ztlFY3FA9zfVVB92mGProCet5BpuAbrUdT/AE2+IaA7Y5QxW7c5eYF5qnxIZUcaMo01uuXjpb0mcqP7RGJKmog3iR+dRkd4H8w1vxEm7Ir71Jk4od4eFjcDlxgCh+s+8b/H5Sr2ibrYa3sJbvUBGefX9+spNp1chacw+iKlDdB3iBfhqYRqBRZRbqdY1eFaETSE70EK8E4U9QBoWcbNSBuUOxUGxtqbyt27tcYeg9XK6jujm7ZKPX5GSmBnN/xF2lvVEwy5hBvvb9bDIHwX/wAo0rbBT0jHvULEkm5JuSdSTqZa9ksMz42gqi9mLHoArXJ+A85J2B2QxGJs27uJ+twRcfyrq3wHWdM2D2co4NSUBZyLM7ZsRrYDQDoI2TIktDYsVNp+ib7LdvwtI1rm/OSsW5P1jEyo3MacWyGpjmGsneNrwt8DOUPaDaopozsbKB/0AOcYHkU/bXbvswzKbu+Sry5t4D7TnuzlJFzmSSc/n847VWriTWxABK090sAblVYkA24gWzPW8XhVyHh85fDOmYs9uiSr65RotwiypEjmXZBDdUZxpBmY650MKpkRbgPjxk9DbItWP4XDvUNkQtztoPEmW+yOz74g77XWnz4t4dOs19DZwpLZVsBYZSNZNcI1YsDpbrhGT2f2QxL2A3EvxJJPkAJuB2SwmHpotRS9Q23mLMLsTnZQbAdJc7Do2u1tBrwuevPWW+yuz6196pXXeU3CLcjL9Zsb+HTPiJmqqp6RqUxjndGRbYGBIzpAdQzg+u9JFPsngbZIfN3/APqM9p9lDD1SqVHdRYkG3dv+UsNfhIWJ2nUp2DI6FhlvKRcdIj8peiqmLW5G8b2IoMSUd06Ahh/kLn1lDi+xFQX3KqP/AFBkPwvNNsjaW+wU3BGefU566iaP+CN79L+N5yyUhKxS/RzKn2SxKLvhEdv6lIHgGtc9TCHZ7HVMyVH9Tj5LedNxFQUkPXhMniNpFHLjidI3yUxHilGRxnZfErcsqueaNn5hgLymr4R099Cv9pnQ6u0mdryHj8Su6d4A+Mebr2TrHPpmJwGTM1rAKwOurAgZQtlV9yoOTZfb99ZY7TVVS1gCc8vhKJjnLEOi9xLbpI4ajwPDylRi3vJlavvKp/fUesgV4AsRSPCKZbRnrJC5gQgQ3uwR32cE446bV7aYg6bieC3/APImQqvabENrVf8AtsvyAg2Z2VxFSxYCmvNx3vJBn62my2T2Vo0syC7/AKnt8F0HxlqyRPRKcN12ZjZ2FxWJORfd/U7MF8uflNnsrs5TpWZz7R+Z90Hov3vLVQBkIW/M9ZnXHRrjBM89sfD8soSZmM78YrY0Lxk0ipLxFuNpX1a6rpKrF7U3jcmwEz+0O1CA7qnePTT1lJlvoSqU9s0O0doqikkgADMk5ec5J2o26cQ9lv7NTl1P6j9IvtLtGrUIDN/pnQDS44NzMzpMdTrsz1fl0bL8MKTHFswF0Wm/tL+6VIsFPic/IyuU5b1rb2gHAcpv+zOBXDbLdx79Sk9Rj/Uh3F8hbzJnPqnAcpXF7M99oN3/AH0jLtFb0QzSgAl+GvpLrstsE4l99x/pIe9zc/oHTS/p4N7K2DUrkbqlEOrt7tv5f1G3LLqJ0rZdBKVP2NMZImvPPNmPM6+sz5ciS0jVgw+T3S4FJQAFlFlGQAGluFovFYfRSPoc5Z7GpKo9q9VVKnJWAJYkZHduOeVoxVqNVYsxsT0yGVrW5TNrjZu3utfRK2HhmfcXL2fvMeNwbW89PWaHa20VoU73AY91RwvbW3ITnu0e1QoOu5ki911521I5G+fnHNsbW9o6lyBwQX4eepOsbHpJ/ZDNFOl9aE4hHR95syx3r63z1B4iWntUrpusFbnvAZHzlVSxRGRG8vEHTxHKWVPYJdldW3EbMi4LAWuMv2Y2SfJbT5DFePD6KXaXZ9EIei5Dg3Ck3U9OYvpNBg8Xaku/YHO+hsLnI2ylTjK5w9Q06hAPDgSOBt9JMOHSohvmCOBsfhMbb6Zq9bRme0G1A72Q5C//AHMxisQWNlDNzIUkDzE1NPs4oqEsxZeF/kZfrhkRbBQJoiU1vYPjdLZzR9pKgsbjpY3kSpjt83cFUHqeVvO06Rigp1UHyBlLjNj4dx3qa+K3U/4yqlIleGvs55isTvm/CQ2mu2h2SGZpVD/S+f8AkM/hMxjsDUpmzqQOYzB84xlqantDVF8iPOIaJpHWDfgEXQQ4jz9JLwy3U9LkHwzI+N/WQ753hhiDkesJxN3Bz+EKGlWnbNqg6C1h4QTjtnolVincCNM4kOviQOMzo2tkpqsYbEAZ3lVicfbjKTae3kQElgI6WxKpI0OM2uF0mM232oCkhTvPyByHifpM5tTtC73VCVXn+Y/aUu9LTH2Z7y+pLHF7Sep77k9NB6cZG9pGQsUGAlVwZ3z2Plt9Sp8vHhKujRLOqD3mYKPFjYfOWVOpJ/YbA+1xtM2yS9Q/2+7/AJFYtBk6T2hQUcC6DQIlPy3lX5TlzPnOhfiFiNzDonGo9z4ILn4lZzpso8f4iV2JMu+zGKw6M5qpvuB3ARvAcyFGraaynw5QOhe+5vDetru3zm/w2LDW/h6YCW94AKmXAH83leTy1paNH48eVb2uBvB4+pVI3abqp1L2UAf06zSUF3RZOPvMeI8ZW06YBG828f0r+85ZtU7oD5AcPvMuj0USlrgkEDIcTp5SBtTa6qCL2kDbW3URblgFA8/DrOZ7Y209VjukqvoT1PLwhmW+hLyzPfZI7S7TLuVBuOI5X4TqGwsTRqIlQhWJUWvbIW0HWcOvLHZu0XpsNx2VbgkDS1xfIx6x7nSM05tU2zvyYbDv+Sx6EiWxrBVJBt5DlbKc/wBl4d6qBkxAscwbXvy0ImhGDrBQGYMOszeVLg1eM0N4jY1Co7PUDuzEX3na2WmmkkDDogAS6qOFyQfG+vjEK4GWd/h6xbAxXz2HeiNiFBlPtTa6YcDffXQDNsunKT9q4taNN6j57oyHMnRfMzke0MY1R2dzdjmeSjkB8hL4Ib59Esud4/8AHs6EMYtRQ6G6tofoRwMbZ8pz7CYuquaOyA+d/I5TT0dqbyLvd1tDyvzvwE0uWPj/ACZviuGTqjkSPUcMLEAyLUqn9XoD8+MR7Y9D++F4uyrSZFxmx0a5CgeGXxlHitkldCbc+XQjhNPTxAOkKrT+Ol9D/Kec4jWKX6MW2FYcvWMupBzmnxGFGZA7vFeKn98ZX1sJbqDofoZxnrC0VEEnfwZ6+sKHZPwo7ZXx1pS4/atsr3PISjx+3CxKoN4/D1kbC06l95nUHwufnlFnDTGrPMvWy7Sg75uxAP5R7x8TwlV2n2AWQOi2ZRmv6l8P1D4yfhq1RdHBPUL87R87ScZOqsOlwfrKfBS5F+fFS0zmirfjlzt9zHrKOJ9B9DLftBhFBNRBZSe8LaE/m8D8/GUTPH6Iv+Djnla3T7GNGJ3s44DnfQQbO0HVbdXqcvvOhfhbgN1KlZvzkIvgt7n/AHH/ABnOqFJqrqiC5YhVHUmwnbsLSp4TDhSbJSXvN4DNupJ+cVsKRj/xFr3rU0v7qFv97Ef+kxzGTtrbSbEVXrPlvHur+lB7q+Q+N5XtKytIk+WG1iZpKnbBFpIiod5QFC+6osLa8vKZp8hbj9JFZRe8S5Vdlcdud6OjbK7R0hh/aMyqx97O5Bv7oGv3me212vZ+7SuB+o/RfvMuycoAkmsaLP8AIprQ7T9pXqKu8zOxCi5JsSdeg4zo+O7LYZlVd3cZVCh1yJsLXI0bzlL2B2XdmxDDupdE6sR3iPAG3meU2lZhC1olvZzXavZWpTuUtUXmuTea/aV2xURcRT9uP9PfG8GuB0DdL2v0nS6pMpdqYJHBLqCfDP1gfPBy4ZuP4ShVXepNuPYW3T3dMu7p6RvE46sllcNYfmGYP2mT7J7IBRyuIdCGsq3uoAAN7Hnf4TSMayjcYhx+oZeoP3mK58Xo9GK8kmSae0V/MLx4Y1bZG0qVtwX4wnLDQQBbM7252yHYUl0TNurEZDyB+MxFQ3yOrfK8m7Rqb1R2PF2P+RkSiurHUzfE+MpI8268qbJtPh0ii+cbRsodL3pZCExKhAJJsAL9IzUao43bFd627bI26xFbvMicGcX8L6TWbm4cgPQSd88FMdNLsyOIpFXO6SPA2i1ruoGZI5HPSXG06A3wwGRiHwYZG3RoQfvJ6Kq2iO+KXI3s2jKePX99I0xXh3lOoGo6+IkbFLZvFVPpdfpHMGwnFHmf0EaREEVVNa5sr+SmCcD5P4WlBAosLCSVqZf8Su9rD/iZuR5RapX84HqcpW+1y/esUrw7OJFUBgRaZHaeF3Ht+U5j7TWK4MjY7DB1IYcDY8iBcH985K1xspjf7aMko48s4hmLeEDNfIaQ1FpAuar8OqKtjBcX3EZl6NdVv6MfWXP4jbU9zDq2tnfwv3V9QT5CMfhvgCC+IYWW24vXMFj4ZAesyu1Maa+IqVScmYkdFGSj/aBO7YGJJyiUN4DDbIZayhMS75Exi8U5uIhYGOhQj2DwrVXSmmbObDpzJ6AXPlGJuOxGzCitXcZuLJzC8W6b2XkOsDYTS4TCJSppTQZILDqeJPUnPzge51jqjeMOoeEQOyDVMq8SOBlniBK6sIGFFDX36bbyMQen15xyn2mrp7wV/UH1H2j2KpGQMQiqLsQBEaT7Q81U9M0OA7QF13ty2djbO2Q+8s02ohGbWPXL5zF7AxqmqaYBCuDYniy56eF5p/4UHIxHjn0bMT85/pg9qGzuB+tvTeJiU4CPbdwxSs69bjwYA/vwkek80SzDc+LaH4ugY1fKOUJREx/AENXX+Ur885oK+IBYzObEQ+1LcLOwPgJZo8nTKwuCZVfeS/ER/DPlu5d4W9eMgA3FuZj1zqOBFvGKN0NPg1Z908Eb/Fz95Fo4YJvudAMvE/sx/atYpWSx1Dg+iHORNqV+4BzNz9P31gOGv4puDt6wSOrQ4DiT7Qwb9tYIJuMQtakU1W0EE4A9SqWjrV/vBBA+jp7Mniqe47KODEfGOYDCmrUSmNXYKOlza/lrBBM5pZ1vGYcUcJUSnl7Oi4XyU5+N85yHDiCCCRWPqLmBngglBRkmJgggHLDYmA9vWVNFzZue4uoHU6ec6fkAABYAAADgBkBBBErs4WWsI07QQQHESq0hVXggisZFBtDbIF1QXYZEnQeXGUVWoWN2Nz+9OUEEjTezkIp1yrB1yZSGHiJ1DCEOquNGVWHgwBggjz0avxX+xS9o+z71mDoRoFIJtYA6jnqZnH2FUVjYrbrDgj7NGTDDpsiV8OVOcQz2B8IUEpPR5+WUnwS9i1O9bkrfK31kpWtBBErsMdD9EE8bcSekexGNVbBb5Zj53PWCCAZkTFYhazpndl3i2R0IUDM66SHim3rwQQI4jb0EEE44/9k=" alt="widht 50px">
-    <img src="data:image/jpeg;base64,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" alt="">
-    <img src="data:image/jpeg;base64,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" alt="">
-
-    <iframe width="460" height="315" src="https://www.youtube.com/embed/0WaYLWDPMB0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <iframe width="460" height="315" src="https://www.youtube.com/embed/L9BDFFi36J4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <script>
-        
-        // Función para mostrar u ocultar el contenido de las secciones
-function toggleSection(sectionId) {
-  const section = document.getElementById(sectionId);
-  section.classList.toggle('visible');
-}
-
-// Obtener todos los enlaces de navegación
-const navLinks = document.querySelectorAll('nav a');
-
-// Agregar un evento de clic a cada enlace de navegación
-navLinks.forEach(link => {
-  link.addEventListener('click', (event) => {
-    event.preventDefault();
-    const sectionId = link.getAttribute('href').slice(1);
-    toggleSection(sectionId);
-  });
-});
-
-// Función para cargar videos pedagógicos
-function loadVideos() {
-  // Aquí puedes agregar el código para cargar los videos pedagógicos desde una fuente externa (por ejemplo, YouTube).
-  // Puedes utilizar la API de YouTube o cualquier otro servicio para incrustar los videos en la página.
-}
-
-        </script>
-
+    <script src="script.js"></script>
+    <style src="style.css"></style>
 </body>
+
 </html>
