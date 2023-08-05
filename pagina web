@@ -130,6 +130,15 @@ body {
     margin-bottom: 20px;
 }
 
+.cta {
+    display: inline-block;
+    background-color: #2091F9;
+    justify-self: center;
+    color: #fff;
+    text-decoration: none;
+    padding: 13px 30px;
+    border-radius: 32px;
+}
 
 /* About */
 
@@ -1427,7 +1436,7 @@ template {
                 <p class="questions__copy"><p>El Poder de la Prevención: La información es la clave para evitar la trampa de la drogadicción. Conoce los riesgos y toma decisiones informadas para proteger tu bienestar </p> <p>Un Futuro en Tus Manos: Cada elección cuenta. Al evitar las drogas, estás creando un camino hacia un futuro más brillante y saludable para ti y quienes te rodean.</p>
                     
                 <p>Conexiones Significativas: Mantén relaciones sólidas y significativas. La prevención de la drogadicción comienza con la comunicación abierta y el apoyo mutuo..</p>
-                
+                <a href="#" class="cta">Aprende ahora</a>
             </section>
         </section>
     </main>
